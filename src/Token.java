@@ -6,7 +6,7 @@ public class Token
     static String[] keyWord={"private","protected","public","abstract","class","extends","final","implements",
             "interface","native","new","static","strictfp","break","continue","return","do","while","if","else","for",
             "instanceof","switch","case","default","boolean","byte","char","double","float","int","long","short",
-            "String","null","true","false","void","this","goto","main","then"};
+            "String","null","true","false","void","this","goto","then"};
 
     static String[] operation={"+","-","*","/","&","==","!=",">","<","=",">=","<=",".","(",")","{","}","[","]",",",";"};
 
@@ -40,7 +40,7 @@ public class Token
         {
             this.tokenName="TK_"+operationName[operations.indexOf(val)].toUpperCase();
         }
-        else if(this.tokenName!=null&&this.tokenName.equals("digit")) {
+        else if(this.tokenName!=null&&this.tokenName.equals("")) {
         }
         else
             this.tokenName="ID";

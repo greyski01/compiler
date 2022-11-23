@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -163,13 +164,26 @@ public class compile
         return 1;
     }
 
+    public Token[] getTokens(){
+        compile c=new compile();
+        c.getNextToken();
+        Token[] tokens=new Token[lt.size()+1];
+        for (int i = 0; i < lt.size(); i++) {
+            tokens[i]=lt.get(i);
+        }
+        return tokens;
+    }
+
 
     public static void main(String[] args) {
         compile c=new compile();
         c.getNextToken();
         for (int i = 0; i < lt.size(); i++) {
+            System.out.print(i+"      |");
             System.out.print(lt.get(i).tokenName+"  |  ");
-            System.out.println(lt.get(i).value);
+            System.out.println(lt.get(i).value+"    |  ");
+//            System.out.print(lt.get(i).errorLine+"    |  ");
+//            System.out.println(lt.get(i).errorPlace);
     }
 }
 }
