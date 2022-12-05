@@ -28,21 +28,33 @@ public class astNode {
 
     class Return_Node extends astNode {
         astNode right;
-        Token tok;
         String functionName;
 
-        public Return_Node(astNode right, Token tok, String functionName) {
+        public Return_Node(astNode right,String functionName) {
             this.right = right;
-            this.tok = tok;
             this.functionName = functionName;
+        }
+    }
+
+    class While_Node extends astNode{
+        astNode condition,statement;
+        public While_Node(astNode condition,astNode statement) {
+            this.condition = condition;
+            this.statement = statement;
         }
     }
 
     class Block_Node extends astNode {
         List<astNode> state_n;
-
         public Block_Node(List<astNode> state_n) {
             this.state_n = state_n;
+        }
+    }
+
+    class PartExpression_Node extends astNode{
+        List<astNode> partExpression;
+        public PartExpression_Node(List<astNode> partExpression) {
+            this.partExpression = partExpression;
         }
     }
 
@@ -104,10 +116,11 @@ public class astNode {
     }
 
     class compound_Statement_Node extends astNode {
-        List<astNode> vd, st = null;
+        List<astNode> st = null;
+        List<List<astNode>> vds = null;
 
-        public compound_Statement_Node(List<astNode> vd, List<astNode> st) {
-            this.vd = vd;
+        public compound_Statement_Node(List<List<astNode>> vds, List<astNode> st) {
+            this.vds = vds;
             this.st = st;
         }
     }
@@ -115,11 +128,9 @@ public class astNode {
 
     class Type_Node extends astNode {
         Token tok;
-        String value;
 
         public Type_Node(Token tok) {
             this.tok = tok;
-            this.value = tok.value;
         }
     }
 
@@ -133,12 +144,13 @@ public class astNode {
     }
 
     class FormalParam_Node extends astNode {
-        astNode type_node, parameter_node;
+        astNode type_node;
+        Token parameter;
         Symbol parameter_symbol;
 
-        public FormalParam_Node(astNode type_node, astNode parameter_node) {
+        public FormalParam_Node(astNode type_node, Token parameter) {
             this.type_node = type_node;
-            this.parameter_node = parameter_node;
+            this.parameter=parameter;
             parameter_symbol = null;
         }
     }
